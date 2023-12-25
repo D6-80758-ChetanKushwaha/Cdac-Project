@@ -1,4 +1,7 @@
-:root {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -65,4 +68,15 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+} */
+/* .footer{
+  position: fixed;
+  bottom:0px;
+  left:0px;
+  right: 0px;
+  background-color: white;
+  margin: 0px -20px 0px 0px;
+} */
+.cart-logo{
+  margin-right: 10px;
 }
