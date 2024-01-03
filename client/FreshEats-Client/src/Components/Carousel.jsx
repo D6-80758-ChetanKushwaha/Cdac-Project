@@ -1,74 +1,89 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function Carousel() {
+const Carousel = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handlePrevClick = () => {
+    setActiveIndex((prevIndex) => (prevIndex === 0 ? 2 : prevIndex - 1));
+  };
+
+  const handleNextClick = () => {
+    setActiveIndex((prevIndex) => (prevIndex === 2 ? 0 : prevIndex + 1));
+  };
+
   return (
     <div
-      id="carouselExampleCaptions"
+      id="carouselExampleIndicators"
       className="relative"
       data-te-carousel-init
-      data-te-ride="carousel">
-      {/* Carousel indicators */}
-      <div
-        className="absolute bottom-0 left-0 right-0 z-[2] mx-[15%] mb-4 flex list-none justify-center p-0"
-        data-te-carousel-indicators>
-        {/* Indicator buttons */}
-        {/* ... (These would be converted similarly to the ones below) */}
-      </div>
+      data-te-ride="carousel"
+      style={{width: '75%', height: '50%', alignContent: 'center', marginLeft:"13%"}}
+    >
 
-      {/* Carousel items */}
-      <div
-        className="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
-        {/* First item */}
+
+      <div className="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+
         <div
-          className="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
-          data-te-carousel-active
+          className={`relative float-left ${
+            activeIndex === 0 ? '' : '-mr-[100%] hidden'
+          } w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none`}
           data-te-carousel-item
-          style={{ backfaceVisibility: 'hidden' }}>
+          data-te-carousel-active={activeIndex === 0}
+        >
+
           <img
-            src="https://tecdn.b-cdn.net/img/Photos/Slides/img%20(15).jpg"
+            src="https://food-ubc.b-cdn.net/wp-content/uploads/2020/02/Save-Money-On-Groceries_UBC-Food-Services.jpg"
             className="block w-full"
-            alt="..." />
-          <div
-            className="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
-            <h5 className="text-xl">First slide label</h5>
-            <p>
-              Some representative placeholder content for the first slide.
-            </p>
-          </div>
+            alt="Wild Landscape"
+          />
         </div>
-        {/* Second item */}
-        {/* ... (The remaining items would be converted similarly) */}
+
+        <div
+          className={`relative float-left ${
+            activeIndex === 1 ? '' : '-mr-[100%] hidden'
+          } w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none`}
+          data-te-carousel-item
+          data-te-carousel-active={activeIndex === 1}
+        >
+
+          <img
+            src="https://assets.aboutamazon.com/dims4/default/d573e3b/2147483647/strip/false/crop/1320x743+0+0/resize/1320x743!/quality/90/?url=https%3A%2F%2Famazon-blogs-brightspot.s3.amazonaws.com%2F92%2F06%2Fbb204a6842a49e7bdc66523a070c%2Fblog2.jpg"
+            className="block w-full"
+            alt="Camera"
+          />
+        </div>
+
+        <div
+          className={`relative float-left ${
+            activeIndex === 2 ? '' : '-mr-[100%] hidden'
+          } w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none`}
+          data-te-carousel-item
+          data-te-carousel-active={activeIndex === 2}
+        >
+          <img
+            src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
+            className="block w-full"
+            alt="Exotic Fruits"
+          />
+        </div>
       </div>
 
-      {/* Carousel controls */}
-      {/* Previous button */}
       <button
         className="absolute bottom-0 left-0 top-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
         type="button"
-        data-te-target="#carouselExampleCaptions"
-        data-te-slide="prev">
-        <span className="inline-block h-8 w-8">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="h-6 w-6">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 19.5L8.25 12l7.5-7.5" />
-          </svg>
-        </span>
-        <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
-          Previous
-        </span>
+        onClick={handlePrevClick}
+      >
       </button>
-      {/* Next button */}
-      {/* ... (The next button would be converted similarly) */}
+
+      <button
+        className="absolute bottom-0 right-0 top-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+        type="button"
+        onClick={handleNextClick}
+      >
+
+      </button>
     </div>
   );
-}
+};
 
 export default Carousel;
