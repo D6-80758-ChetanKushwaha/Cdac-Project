@@ -24,7 +24,7 @@ const products = [
 ]
 const callsToAction = [
   { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-  { name: 'Contact sales', href: 'https://github.com/D6-80758-ChetanKushwaha/Cdac-Project', icon: PhoneIcon },
+  { name: 'Contact', href: 'https://github.com/D6-80758-ChetanKushwaha/Cdac-Project', icon: PhoneIcon },
 ]
 
 function classNames(...classes) {

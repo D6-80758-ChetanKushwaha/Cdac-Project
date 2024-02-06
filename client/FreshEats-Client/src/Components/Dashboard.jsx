@@ -6,8 +6,13 @@ function Dashboard() {
     return (
 
         <div>
-          <Carousel/>
-          <Catelog/>
+          <div style={{height: "100%"}}>
+            <Carousel/>
+          </div>
+          <div>
+
+            <Catelog/>
+          </div>
         </div>
             
     )
