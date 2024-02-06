@@ -10,14 +10,10 @@ import SignUp from './Components/SignUp'
 import About from './Components/About'
 import { Link } from 'react-router-dom'
 
-let temp = [
-  
-]
 
-localStorage.setItem('myCartProds', JSON.stringify(temp));
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   // Creating Global Session Storage...
 

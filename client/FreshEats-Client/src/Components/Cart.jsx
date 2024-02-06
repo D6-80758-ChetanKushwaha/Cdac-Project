@@ -1,6 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { CartContext } from './Catelog';
+
 
 const Cart = () => {
+
+    const {cart, addProdToCart} = useContext(CartContext)
+
+
+
     const [quantity, setQuantity] = useState(1);
     const productPrice = 19.99;
     const taxes = 1.99;
@@ -16,12 +23,13 @@ const Cart = () => {
         setQuantity(quantity + 1);
     };
 
-    function getCartProd(){
-        const dataList = localStorage.getItem("myCartProds")
-        return dataList ? JSON.parse(dataList) : null;
-    }
-    const dataList = getCartProd()
-    console.log(dataList)
+    // function getCartProd(){
+    //     const dataList = localStorage.getItem("myCartProds")
+    //     return dataList ? JSON.parse(dataList) : null;
+    // }
+    // const dataList = getCartProd()
+    // console.log(dataList)
+
 
     return (
         <div className="bg-gray-100 h-screen py-8">
@@ -43,7 +51,7 @@ const Cart = () => {
                                 <tbody>
                                     
                                 {
-                                    dataList.map((obj,index)=>(
+                                    cart.map((obj,index)=>(
                                         <tr>
                                             <td className="py-4">
                                                 <div className="flex items-center">
