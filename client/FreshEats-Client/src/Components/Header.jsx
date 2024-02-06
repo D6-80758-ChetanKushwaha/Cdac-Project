@@ -2,6 +2,7 @@ import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
 import { Link } from 'react-router-dom'
 import SearchBar from "./SearchBar"
+
 // import Dialog from '@headlessui/react'
 import {
   ArrowPathIcon,
@@ -15,15 +16,15 @@ import {
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 
 const products = [
-  { name: 'Meat', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
-  { name: 'Milk', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-  { name: 'Egg', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
-  { name: 'Pradeep', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-  { name: 'Chetan', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
+  { name: 'Dairy & Breakfast', description: '', href: '#', icon: ChartPieIcon },
+  { name: 'Vegetables & Fruits', description: '', href: '#', icon: ChartPieIcon },
+  { name: 'Instant & Frozen Food', description: '', href: '#',icon: ChartPieIcon },
+  { name: 'Chicken,Meat & Fish', description: '', href: '#',  icon: ChartPieIcon },
+  { name: 'Bakery & Biscuits', description: '', href: '#', icon: ChartPieIcon },
 ]
 const callsToAction = [
   { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-  { name: 'Contact sales', href: 'https://github.com/D6-80758-ChetanKushwaha/Cdac-Project', icon: PhoneIcon },
+  { name: 'Contact', href: 'https://github.com/D6-80758-ChetanKushwaha/Cdac-Project', icon: PhoneIcon },
 ]
 
 function classNames(...classes) {
@@ -39,7 +40,7 @@ export default function Example() {
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src="../Logo.png" alt="logo" />
+            <img className="h-11 w-auto" src="https://img.freepik.com/free-vector/shopping-basket-with-food-vector-illustration-cart-with-product-buy-supermarket-vector-illustration_1284-47048.jpg?w=996&t=st=1704130832~exp=1704131432~hmac=a9c18911b25ab83880946f28fcc88646c73dcc3326c5460eba592bd43e9f42b0" alt="logo" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -88,7 +89,7 @@ export default function Example() {
                     </div>
                   ))}
                 </div>
-                <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                {/* <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
                   {callsToAction.map((item) => (
                     <a
                       key={item.name}
@@ -99,7 +100,7 @@ export default function Example() {
                       {item.name}
                     </a>
                   ))}
-                </div>
+                </div> */}
               </Popover.Panel>
             </Transition>
           </Popover>
@@ -109,18 +110,18 @@ export default function Example() {
             <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
                 Home
             </a>
+
           </Link>
 
+          <Link to={"/About"}>
           
-
-                    
-
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Marketplace
-          </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+            <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+              About Us
+            </a>
+          </Link>
+          {/* <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Company
-          </a>
+          </a> */}
 
           
           <SearchBar/>
@@ -143,7 +144,7 @@ export default function Example() {
               <Link to={"/login"}>
                       
                   <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                      Log in <span aria-hidden="true">&rarr;</span>
+                      Sign in <span aria-hidden="true">&rarr;</span>
                   </a>
               </Link>
             </div>
@@ -162,6 +163,7 @@ export default function Example() {
                 alt=""
               />
             </a>
+
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
