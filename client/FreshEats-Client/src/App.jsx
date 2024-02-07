@@ -9,6 +9,7 @@ import Cart from './Components/Cart'
 import SignUp from './Components/SignUp'
 import About from './Components/About'
 import { Link } from 'react-router-dom'
+import ToastCom from './Components/Toast'
 
 
 
@@ -23,7 +24,7 @@ function App() {
       <Router>
           {/* <Route path='/' element={<Example/>} /> */}
         <Example/>
-
+        
         <Routes>
           <Route path="" element={<Dashboard/>}/>
           <Route path='/login' element={<Login/>} />

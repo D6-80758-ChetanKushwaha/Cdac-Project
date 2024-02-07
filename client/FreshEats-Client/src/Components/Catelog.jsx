@@ -1,65 +1,130 @@
-import {createContext, useEffect, useState } from "react";
-
-const CartContext = createContext();
-
+import { useEffect, useState } from "react";
+import ToastCom from "./Toast";
 function Catelog() {
-    
+    /// data from server...... in this format now dummpy for poc..
+    // const data = [
+    //   {
+    //     "key":1,
+    //     "title":"Fresh Apple",
+    //     "price":99.9,
+    //     "image-url":"https://componentland.com/images/86WxAQqZpR5CqrhSPKwNv.png"
+    //   },
+    //   {
+    //     "key":2,
+    //     "title":"Stale Apple",
+    //     "price":9.9,
+    //     "image-url":""
+    //   },
+    //   {
+    //     "key":3,
+    //     "title":"Fresh Apple",
+    //     "price":7.9,
+    //     "image-url":""
+    //   },
+    //   {
+    //     "key":4,
+    //     "title":"Fresh Apple",
+    //     "price":99.9,
+    //     "image-url":""
+    //   },
+    //   {
+    //     "key":5,
+    //     "title":"Fresh Apple",
+    //     "price":76679.9,
+    //     "image-url":"https://componentland.com/images/86WxAQqZpR5CqrhSPKwNv.png"
+    //   },
+    //   {
+    //     "key":6,
+    //     "title":"Fresh Apple",
+    //     "price":99.9,
+    //     "image-url":""
+    //   },
+    //   {
+    //     "key":7,
+    //     "title":"Fresh Apple",
+    //     "price":99.9,
+    //     "image-url":""
+    //   },
+    //   {
+    //     "key":8,
+    //     "title":"Fresh Apple",
+    //     "price":99.9,
+    //     "image-url":""
+    //   },
+    // ]
+
     const data = [
       {
-        "title":"Fresh Apple",
-        "price":99.9,
-        "image-url":"https://componentland.com/images/86WxAQqZpR5CqrhSPKwNv.png"
+          "key": 1,
+          "title": "Juicy Apple",
+          "price": 109.9,
+          "image-url": "https://componentland.com/images/86WxAQqZpR5CqrhSPKwNv.png"
       },
       {
-        "title":"Stale Apple",
-        "price":9.9,
-        "image-url":""
+          "key": 2,
+          "title": "Old Apple",
+          "price": 19.9,
+          "image-url": ""
       },
       {
-        "title":"Fresh Apple",
-        "price":7.9,
-        "image-url":""
+          "key": 3,
+          "title": "Sweet Apple",
+          "price": 17.9,
+          "image-url": ""
       },
       {
-        "title":"Fresh Apple",
-        "price":99.9,
-        "image-url":""
+          "key": 4,
+          "title": "Tasty Apple",
+          "price": 119.9,
+          "image-url": ""
       },
       {
-        "title":"Fresh Apple",
-        "price":76679.9,
-        "image-url":"https://componentland.com/images/86WxAQqZpR5CqrhSPKwNv.png"
+          "key": 5,
+          "title": "Delicious Apple",
+          "price": 77679.9,
+          "image-url": "https://componentland.com/images/86WxAQqZpR5CqrhSPKwNv.png"
       },
       {
-        "title":"Fresh Apple",
-        "price":99.9,
-        "image-url":""
+          "key": 6,
+          "title": "Crunchy Apple",
+          "price": 119.9,
+          "image-url": ""
       },
       {
-        "title":"Fresh Apple",
-        "price":99.9,
-        "image-url":""
+          "key": 7,
+          "title": "Yummy Apple",
+          "price": 119.9,
+          "image-url": ""
       },
       {
-        "title":"Fresh Apple",
-        "price":99.9,
-        "image-url":""
+          "key": 8,
+          "title": "Sour Apple",
+          "price": 119.9,
+          "image-url": ""
       },
-    ]
-
+  ];
+  
     const [cart, setCart] = useState(()=>{
+
       const storedCart = localStorage.getItem('myCartProds');
       return storedCart ? JSON.parse(storedCart) : [];
+
     })
 
-    useEffect(()=>{
+    useEffect(()=> {
       localStorage.setItem('myCartProds',JSON.stringify(cart))
     },[cart])
 
       
 
     function addProdToCart(obj) {
-      setCart(prevCart => [...prevCart, obj])
+      obj["quantity"] = 1
+      setCart([...cart, obj])
+      // debugger
+      // {ToastCom}
+      
+
+      console.log(cart)
     }
 
     return (
@@ -73,7 +138,7 @@ function Catelog() {
                   <div class="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-4 lg:mt-16">
                     
                     {/* {data-rendering login} */}
-
+                  
                     
 
                         {
@@ -93,6 +158,7 @@ function Catelog() {
                                 <h3 class="mb-2 text-sm text-gray-400">{obj.title}</h3>
                               </div>
                               <button onClick={()=> addProdToCart(obj)} class="group mx-auto mb-2 flex h-10 w-10/12 items-stretch overflow-hidden rounded-md text-gray-600">
+                                
                                 <div class="flex w-full items-center justify-center bg-gray-100 text-xs uppercase transition group-hover:bg-emerald-600 group-hover:text-white">Add</div>
                                 <div class="flex items-center justify-center bg-gray-200 px-5 transition group-hover:bg-emerald-500 group-hover:text-white">+</div>
                               </button> 
@@ -100,9 +166,7 @@ function Catelog() {
                           ))
                         }
 
-                      <CartContext.Provider value={{ cart, addProdToCart }}>
-
-                      </CartContext.Provider>
+                      
                       
                       
 
@@ -137,4 +201,4 @@ function Catelog() {
     )
 }
 
-export { CartContext, Catelog };
+export default Catelog;
