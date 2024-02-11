@@ -6,7 +6,7 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Product")
+@Table(name = "Products")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -39,6 +39,5 @@ public class ProductEntity extends BaseEntity {
 
     @Column(name="Image_Url",length = 500)
     private String imageUrl;
-
 
 }

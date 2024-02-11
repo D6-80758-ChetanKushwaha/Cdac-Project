@@ -8,7 +8,6 @@ import java.util.List;
 
 @Component
 public interface ProductService {
-
     List<ProductEntity> getAllProduct();
     ProductEntity addProduct(ProductEntity product);
 

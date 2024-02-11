@@ -29,4 +29,5 @@ public class SellerController {
     public CategoryEntity addCategory(@RequestBody CategoryEntity category){
         return this.categoryService.addCategory(category);
     }
+
 }
