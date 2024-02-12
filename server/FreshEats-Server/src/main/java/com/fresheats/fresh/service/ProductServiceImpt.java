@@ -15,7 +15,6 @@ public class ProductServiceImpt implements ProductService{
 
     @Autowired
     ProductDao productDao;
-   
     @Override
     public List<ProductEntity> getAllProduct() {
         return this.productDao.findAll();
