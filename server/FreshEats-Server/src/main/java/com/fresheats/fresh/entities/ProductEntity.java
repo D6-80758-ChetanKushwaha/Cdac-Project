@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @ToString()
 public class ProductEntity extends BaseEntity {
 
-    @Column(name = "Product_Name",length = 25)
+    @Column(name = "Product_Name", length = 25)
     private String name;
 
     @ManyToOne()
@@ -22,7 +22,7 @@ public class ProductEntity extends BaseEntity {
     private CategoryEntity categoryId;
 
     @Column(name = "Stock_Quantity")
-    private  Integer stockQuantity;
+    private Integer stockQuantity;
 
     @Column(name = "Product_Description")
     @Lob
@@ -37,7 +37,7 @@ public class ProductEntity extends BaseEntity {
     @Column(name = "Updated_At")
     private LocalDateTime updatedAt;
 
-    @Column(name="Image_Url",length = 500)
+    @Column(name = "Image_Url", length = 500)
     private String imageUrl;
 
 }
