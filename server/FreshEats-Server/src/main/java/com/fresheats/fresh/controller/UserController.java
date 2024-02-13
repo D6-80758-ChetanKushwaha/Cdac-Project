@@ -1,5 +1,6 @@
 package com.fresheats.fresh.controller;
 
+import com.fresheats.fresh.dto.ProductCatelogDto;
 import com.fresheats.fresh.entities.ProductEntity;
 import com.fresheats.fresh.entities.UserEntity;
 import com.fresheats.fresh.service.ProductService;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @Controller
 @ResponseBody
@@ -21,12 +21,14 @@ public class UserController {
 
     @Autowired
     UserService userService;
-    @GetMapping({"/home","/"})
-    public List<ProductEntity> home(){
+
+    @GetMapping({ "/home", "/" })
+    public List<ProductCatelogDto> home() {
         return this.productService.getAllProduct();
     }
-    @PostMapping({"/addUser"})
-    public UserEntity addUser(@RequestBody UserEntity user){
+
+    @PostMapping({ "/addUser" })
+    public UserEntity addUser(@RequestBody UserEntity user) {
 
         return this.userService.addUser(user);
     }
