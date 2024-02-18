@@ -20,15 +20,15 @@ import lombok.ToString;
 @ToString()
 public class ProductDTO {
 
-	@JsonProperty(value = "product_id",access = Access.READ_ONLY)
+	@JsonProperty(value = "product_id", access = Access.READ_ONLY)
 	private Long id;
-	
+
 	@NotNull(message = "Product category should not be null")
 	private Long categoryId;
 
 	@NotNull
 	private Long sellerId;
-	
+
 	@NotBlank(message = "Product name should not be null")
 	@Size(max = 25)
 	private String name;
@@ -44,16 +44,16 @@ public class ProductDTO {
 	@NotNull(message = "Product price should not be null")
 	@Positive
 	private double productPrice;
-	
+
 	@Positive
 	private double discountedPrice;
-		
+
 	@Positive
 	private double discountedPercent;
-	
+
 	@NotBlank(message = "Product image url should not be null")
-    @URL // ensures that the imageUrl field contains a valid URL.
-    @Size(max = 500)
-    private String imageUrl;
+	@URL // ensures that the imageUrl field contains a valid URL.
+	@Size(max = 500)
+	private String imageUrl;
 
 }

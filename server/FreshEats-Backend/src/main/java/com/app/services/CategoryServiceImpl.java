@@ -20,35 +20,35 @@ import com.app.repositories.CategoryRepository;
 @Transactional
 public class CategoryServiceImpl implements CategoryService {
 
-	
 	@Autowired
 	private CategoryRepository cdao;
-	
+
 	@Autowired
 	private ModelMapper mapper;
-	
+
 	@Override
 	public List<CategoryDTO> getAllCategories() {
-		
-		List<CategoryDTO> list = cdao.findAll().stream().map(m -> mapper.map(m, CategoryDTO.class)).collect(Collectors.toList());
-		
+
+		List<CategoryDTO> list = cdao.findAll().stream().map(m -> mapper.map(m, CategoryDTO.class))
+				.collect(Collectors.toList());
+
 		return list;
 	}
 
 	@Override
 	public CategoryDTO getCategoryById(Long id) {
-		
-		CategoryEntity categoryentity 	= cdao.getReferenceById(id);
-        return mapper.map(categoryentity, CategoryDTO.class);
+
+		CategoryEntity categoryentity = cdao.getReferenceById(id);
+		return mapper.map(categoryentity, CategoryDTO.class);
 	}
 
 	@Override
 	public List<CategoryDTO> getCategoriesByCategoryName(String categoryName) {
-		
-		 List<CategoryEntity> categoryEntities = cdao.findByCategoryName(categoryName);
-	        return categoryEntities.stream()
-	                .map(entity -> mapper.map(entity, CategoryDTO.class))
-	                .collect(Collectors.toList());
+
+		List<CategoryEntity> categoryEntities = cdao.findByCategoryName(categoryName);
+		return categoryEntities.stream()
+				.map(entity -> mapper.map(entity, CategoryDTO.class))
+				.collect(Collectors.toList());
 	}
 
 	@Override
@@ -60,9 +60,9 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public void deleteCategory(Long categoryId) {
 		CategoryEntity c = cdao.findById(categoryId).get();
-		
-		if(c!=null) {
-		   cdao.delete(c);
+
+		if (c != null) {
+			cdao.delete(c);
 		}
 	}
 
@@ -71,11 +71,11 @@ public class CategoryServiceImpl implements CategoryService {
 		CategoryEntity category = cdao.findById(categoryId).orElseThrow(null);
 		category.setCategoryName(updatedCategory.getCategoryName());
 		category.setDescription(updatedCategory.getDescription());
-		
+
 		cdao.save(category);
 		CategoryDTO categorydto = mapper.map(category, CategoryDTO.class);
 		return categorydto;
-		
+
 	}
 
 }
