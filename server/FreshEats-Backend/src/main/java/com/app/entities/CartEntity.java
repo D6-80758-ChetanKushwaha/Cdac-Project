@@ -16,10 +16,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Table(name = "Cart", uniqueConstraints = @UniqueConstraint(columnNames = { "CustID", "ProdID" }))
+@Table(name = "Cart") // uniqueConstraints = @UniqueConstraint(columnNames = { "CustID", "ProdID" }))
 public class CartEntity extends BaseEntity {
 
-//	    private int CartID;
+	// private int CartID;
 
 	@Column(name = "customer_id", nullable = false)
 	private int CustID;
