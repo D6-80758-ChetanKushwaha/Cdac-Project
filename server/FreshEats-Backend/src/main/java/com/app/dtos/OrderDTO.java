@@ -6,7 +6,6 @@ import java.util.List;
 import com.app.entities.OrderStatus;
 import com.app.entities.PaymentStatus;
 import com.app.entities.CustomerEntity;
-import com.app.entities.OrderItemsEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -24,7 +23,7 @@ public class OrderDTO {
 	
 	private CustomerEntity customer;
 	 
-    private List<OrderItemsEntity> items;
+   // private List<OrderItemsEntity> items;
     
     private LocalDateTime orderDate;
     

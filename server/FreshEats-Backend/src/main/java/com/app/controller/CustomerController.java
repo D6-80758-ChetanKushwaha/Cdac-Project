@@ -19,7 +19,7 @@ import com.app.dtos.CustomerDTO;
 import com.app.services.CustomerService;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/api/customer")
 public class CustomerController {
 	
 	@Autowired

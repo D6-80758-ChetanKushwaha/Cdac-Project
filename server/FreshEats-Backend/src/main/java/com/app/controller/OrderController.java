@@ -21,7 +21,7 @@ import com.app.entities.OrderEntity;
 import com.app.services.OrderService;
 
 @RestController
-@RequestMapping("/api/Order")
+@RequestMapping("/api/order")
 @CrossOrigin()
 public class OrderController {
 	

@@ -28,12 +28,12 @@ import lombok.ToString;
 public class CategoryEntity extends BaseEntity {
 
 	// a category can contain multiple products.
-	// "Fruits" and "Organic" each have a recategoryserviceference to the "Apple"
-	// product.
-	@OneToMany(mappedBy = "categoryId", cascade = CascadeType.ALL, orphanRemoval = true)
-
+	// "Fruits" and "Organic" each have a reference to the "Apple" product.
+	
+	//@OneToMany(mappedBy = "categoryId", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ProductEntity> products;
-
+	
 	@Column(name = "category_name", nullable = false)
 	private String categoryName;
 

@@ -15,9 +15,11 @@ import lombok.ToString;
 public class ApiResponse {
 	LocalDateTime time;
 	String msg;
+	Boolean status;
 	
-	public ApiResponse(String msg) {
+	public ApiResponse(String msg, Boolean status) {
 		this.msg = msg;
+		this.status = status;
 		time = LocalDateTime.now();
 	}	
 

@@ -25,7 +25,7 @@ import com.app.security.JwtUtils;
 import com.app.services.SellerService;
 
 @RestController
-@RequestMapping("/seller")
+@RequestMapping("/api/seller")
 public class SellerController {
 	
 	@Autowired

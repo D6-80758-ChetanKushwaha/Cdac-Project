@@ -22,7 +22,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "order")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -34,14 +34,14 @@ public class OrderEntity extends BaseEntity{
     @JoinColumn(name = "customer_id")
     private CustomerEntity customer; // Assuming you have a User entity defined that maps to your Users table
 
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderItemsEntity> items = new ArrayList<>();
+//	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+//   private List<OrderItemsEntity> items = new ArrayList<>();
 	
 //    @Column(name = "total_price", nullable = false)
 //    private Double totalPrice;
 	
 	 @Column(name = "order_date")
-	    private LocalDateTime orderDate;
+	 private LocalDateTime orderDate;
 	 
 	 @Column(name = "shipping_address")
 	    @Lob

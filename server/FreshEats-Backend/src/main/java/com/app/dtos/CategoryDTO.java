@@ -19,7 +19,7 @@ import lombok.ToString;
 @ToString()
 public class CategoryDTO {
 	
-	@JsonProperty(value = "product_id",access = Access.READ_ONLY)
+	@JsonProperty(value = "category_id",access = Access.READ_ONLY)
 	private Long id;
 
 	//private Long productId;

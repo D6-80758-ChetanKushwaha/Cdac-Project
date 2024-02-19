@@ -20,7 +20,7 @@ import com.app.services.ProductService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/seller/products")
+@RequestMapping("/api/product")
 public class ProductController {
 
 	@Autowired
@@ -36,7 +36,7 @@ public class ProductController {
 		return ResponseEntity.ok(products);
 	}
 
-	@GetMapping
+	@GetMapping("/get")
 	public ResponseEntity<List<ProductDTO>> getAllProducts() {
 		System.out.println("get request got");
 		List<ProductDTO> products = productService.getAllProducts();

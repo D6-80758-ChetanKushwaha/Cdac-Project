@@ -16,7 +16,7 @@ import lombok.ToString;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = "password")
 //@Audited
 public class SellerEntity extends BaseEntity{
 	

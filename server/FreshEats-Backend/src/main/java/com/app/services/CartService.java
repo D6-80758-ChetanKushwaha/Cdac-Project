@@ -2,23 +2,24 @@ package com.app.services;
 
 import java.util.List;
 
-import com.app.entities.CartEntity;
+import com.app.dtos.ApiResponse;
+import com.app.dtos.AddToCartDTO;
+import com.app.dtos.CartProductDTO;
 
 public interface CartService {
 
-	CartEntity saveCart(CartEntity obj);
+	// void addProductToCart(Long cartId, int quantity);
 
-	List<CartEntity> getAllCart();
+	ApiResponse removeProductFromCart(Long customerId, Long productId);
+	//
+	// CartDTO getCart(Long cartId);
+	//
+	// double calculateTotalPrice(Long cartId);
 
-	CartEntity getCartById(int id);
+	// void addProductToCart(Long userId, Long productId);
 
-	void deleteCart(int id);
+	ApiResponse addProductToCart(AddToCartDTO cart); // response DTO if needed
 
-	CartEntity updateCart(CartEntity c, int id);
+	List<CartProductDTO> getCartProducts(long customerId);
 
-	List<CartEntity> findProdByCustID(int cid);
-
-	int UpdateQty(int QT, int cid);
-
-	int DeletecartByCustID(int cid);
 }

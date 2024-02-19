@@ -2,6 +2,7 @@ package com.app.services;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -12,9 +13,12 @@ import org.springframework.stereotype.Service;
 
 import com.app.dtos.ApiResponse;
 import com.app.dtos.ProductDTO;
+import com.app.entities.CategoryEntity;
 import com.app.entities.ProductEntity;
 import com.app.exceptions.ProductException;
+import com.app.repositories.CategoryRepository;
 import com.app.repositories.ProductRepository;
+import com.app.repositories.SellerRepository;
 
 @Service
 @Transactional
@@ -25,6 +29,13 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private ModelMapper mapper;
+	
+	@Autowired
+    private SellerRepository sellerRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+	
 
 	@Override
 	public List<ProductDTO> getAllProducts() {
@@ -44,9 +55,19 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ProductDTO saveProduct(ProductDTO product) {
-		ProductEntity prod = mapper.map(product, ProductEntity.class);
-
-		return mapper.map(pdao.save(prod), ProductDTO.class);
+		
+		ProductEntity prod =  mapper.map(product, ProductEntity.class);
+		
+		Optional<CategoryEntity> category = categoryRepository.findById(product.getCategoryId());
+		// getting category by ID
+		if(category.isPresent()) { // checking if present
+//			prod.setCategoryId(category.get());
+			pdao.save(prod);
+			return mapper.map(product, ProductDTO.class);
+		}
+		else return null; // 
+		// setting category in product
+		
 	}
 
 	@Override

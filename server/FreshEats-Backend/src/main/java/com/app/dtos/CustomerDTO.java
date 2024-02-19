@@ -7,6 +7,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.app.entities.UserRole;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -41,6 +42,9 @@ public class CustomerDTO {
 	//@Pattern(regexp="((?=.\\d)(?=.[a-z])(?=.[#@$]).{5,20})")
 	//@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
+	
+	@Size(min = 10, max = 10)
+	private String contactInfo;
 	
 	@NotBlank(message = "Address must be entered")
 	private String address;

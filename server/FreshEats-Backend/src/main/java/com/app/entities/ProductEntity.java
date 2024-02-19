@@ -17,9 +17,11 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @ToString()
 public class ProductEntity extends BaseEntity {
 
-    @ManyToOne()
-    @JoinColumn(name = "category_id")
-    private CategoryEntity categoryId;
+	private Integer productNos;
+	
+//    @ManyToOne()
+//    @JoinColumn(name = "category_id")
+//    private CategoryEntity categoryId;
 
     /*
      * one-to-many relationship where one seller can have multiple products but
@@ -33,10 +35,10 @@ public class ProductEntity extends BaseEntity {
      * based on the seller's ID.
      */
 
-    // @ManyToOne(fetch = FetchType.EAGER) // Each seller can have multiple products
-    // -->Unidirectional
-    // @JoinColumn(name = "seller_id")
-    // private SellerEntity sellerId;
+//     @ManyToOne(fetch = FetchType.EAGER) // Each seller can have multiple products
+//     //-->Unidirectional
+//     @JoinColumn(name = "seller_id")
+//     private SellerEntity sellerId;
 
     // @OneToMany
     // @JoinColumn(name = "cart_id")
