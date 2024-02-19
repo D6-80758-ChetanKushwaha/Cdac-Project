@@ -29,44 +29,33 @@ import lombok.ToString;
 @Setter
 @ToString(exclude = "password") // toString excluding password
 public class CustomerEntity extends BaseEntity {
-	
-	//Bi-directional --> access all orders for a customer (from the Customer side) and to access the customer from an Order.
-	@OneToMany(mappedBy = "customer",  cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<OrderEntity> orders ;
-	 
+
 	@Column(length = 20)
 	private String firstName;
-	
+
 	@Column(length = 20)
 	private String lastName;
 
-    @Column(name = "Username", nullable = false, unique = true)
-    private String username;
+	@Column(name = "Username", nullable = false, unique = true)
+	private String username;
 
 	@Column(length = 30, nullable = false, unique = true)
 	private String email;
-	
+
 	@Column(length = 300, nullable = false)
 	private String password;
-	
-	@Column(name = "contact", length = 10,  nullable = false)
-    private String contactInfo;
-	
-	@Column(name = "address", length = 50,  nullable = false)
+
+	@Column(name = "address", length = 50, nullable = false)
 	private String address;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(length = 30)
 	private UserRole role;
-	
+
 	@Column(name = "CreatedAt")
 	private LocalDateTime createdAt;
 
-    @Column(name = "UpdatedAt")
-    private LocalDateTime updatedAt;
+	@Column(name = "UpdatedAt")
+	private LocalDateTime updatedAt;
 
 }
-
-
-
-

@@ -13,51 +13,56 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dtos.OrderDTO;
+import com.app.dtos.OrderRequest;
 import com.app.dtos.ProductDTO;
 import com.app.entities.OrderEntity;
+import com.app.services.CartService;
 import com.app.services.OrderService;
 
 @RestController
-@RequestMapping("/api/order")
+@RequestMapping("/order")
 @CrossOrigin()
 public class OrderController {
-	
-	
+
 	@Autowired
 	private OrderService manager;
-	
+
+	@Autowired 
+	private CartService cartService;
+
 	@GetMapping
-	public ResponseEntity<List<OrderDTO>> getAllOrder()
-	{
-		return new ResponseEntity<List<OrderDTO>>(manager.getAllOrders(),HttpStatus.OK);
+	public ResponseEntity<List<OrderDTO>> getAllOrder() {
+		return new ResponseEntity<List<OrderDTO>>(manager.getAllOrders(), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<OrderDTO> getOrderById(@PathVariable Long id )
-	{
-		return new ResponseEntity<OrderDTO>(manager.getOrderById(id),HttpStatus.OK);
+	public ResponseEntity<OrderDTO> getOrderById(@PathVariable Long id) {
+		return new ResponseEntity<OrderDTO>(manager.getOrderById(id), HttpStatus.OK);
 	}
-	
+
 	@PostMapping
-	public  ResponseEntity<OrderDTO> AddOrder(@RequestBody OrderDTO order)
-	{
+	public ResponseEntity<OrderDTO> AddOrder(@RequestBody OrderRequest order) {
 		OrderDTO savedProduct = manager.saveOrder(order);
-	        return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);
+
+		// Disable cart
+		cartService.disableActiveCart(order.getCustomerId());
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);
+	}
+
+
+
+	@PutMapping("/{orderId}")
+	public ResponseEntity<?> CancelOrder(@PathVariable Long orderId) {
+		 return new ResponseEntity<>(manager.CancelOrder(orderId),HttpStatus.OK);
+	
+	
 	}
 	
-//	@PutMapping("/{id}")
-//	public ResponseEntity<OrderDTO> EditOrder(@PathVariable Long id, @RequestBody OrderDTO order )
-//	{
-//		return new ResponseEntity<OrderDTO>(manager.update(id, order),HttpStatus.CREATED);
-//	}
-	
-	@DeleteMapping("/{id}")
-	public void deleteOrder(@PathVariable Long id)
-	{
-		manager.deleteOrder(id);
-	}
+	//cancel the order ...upadate status ...product quantity should revert
 
 }

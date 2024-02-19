@@ -37,10 +37,10 @@ public class ProductEntity extends BaseEntity {
      * based on the seller's ID.
      */
 
-//     @ManyToOne(fetch = FetchType.EAGER) // Each seller can have multiple products
-//     //-->Unidirectional
-//     @JoinColumn(name = "seller_id")
-//     private SellerEntity sellerId;
+	 @ManyToOne(fetch = FetchType.EAGER) // Each seller can have multiple products -->Unidirectional
+	    @PrimaryKeyJoinColumn
+	    private SellerEntity seller;
+
 
     // @OneToMany
     // @JoinColumn(name = "cart_id")

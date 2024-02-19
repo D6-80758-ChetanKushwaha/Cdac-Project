@@ -22,4 +22,6 @@ public interface CartService {
 
 	List<CartProductDTO> getCartProducts(long customerId);
 
+	boolean disableActiveCart(long customerId);
+
 }

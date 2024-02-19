@@ -1,5 +1,5 @@
 package com.app.entities;
 
 public enum OrderStatus {
-	COMPLETED, PENDING, CANCELLED
+	PLACED,COMPLETED, PENDING, CANCELLED
 }

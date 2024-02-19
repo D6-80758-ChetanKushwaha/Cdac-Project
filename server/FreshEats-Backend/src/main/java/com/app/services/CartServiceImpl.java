@@ -10,7 +10,6 @@ import javax.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.app.dtos.ApiResponse;
 import com.app.dtos.AddToCartDTO;
@@ -26,10 +25,7 @@ import com.app.repositories.CartRepository;
 import com.app.repositories.CustomerRepository;
 import com.app.repositories.ProductRepository;
 
-
-
 @Service
-@Transactional
 public class CartServiceImpl implements CartService {
 
 	@Autowired
@@ -106,6 +102,18 @@ public class CartServiceImpl implements CartService {
 		return new ApiResponse("Product Removed Successfully!", true);
 	}
 
+	@Override
+	public boolean disableActiveCart(long customerId) {
+		CartEntity activeCart = getActiveCart(customerId);
+		if(activeCart == null) {
+			return false;
+		}
+
+		activeCart.setCartStatus(CartStatus.INACTIVE);
+		cartRepository.save(activeCart);
+		return true;
+	}
+
 	private CartEntity getActiveCart(long customerId) {
 		CartEntity activeCart;
 		Optional<CartEntity> existingCart = cartRepository.findByCustomerIdAndCartStatus(customerId,
@@ -127,65 +135,3 @@ public class CartServiceImpl implements CartService {
 	}
 }
 
-//
-// public void removeProductFromCart(Long cartId, Long productId) {
-// CartEntity cart = cartRepository.findById(cartId)
-// .orElseThrow();
-// //orElseThrow(() -> new CartNotFoundException("Cart not found with id: " +
-// cartId));
-//
-// ProductEntity product = productRepository.findById(productId)
-// .orElseThrow();
-// //orElseThrow(() -> new ProductNotFoundException("Product not found with id:
-// " + productId));
-//
-// cart.removeProduct(product);
-// cartRepository.save(cart);
-// }
-//
-// public CartDTO getCart(Long cartId) {
-// CartEntity cart = cartRepository.findById(cartId)
-// .orElseThrow();
-// //orElseThrow(() -> new CartNotFoundException("Cart not found with id: " +
-// cartId));
-//
-// return new CartDTO(cart);
-//
-// }
-//
-// public double calculateTotalPrice(Long cartId) {
-// CartEntity cart = cartRepository.findById(cartId)
-// .orElseThrow();
-// //orElseThrow(() -> new CartNotFoundException("Cart not found with id: " +
-// cartId));
-//
-// double totalPrice = 0.0;
-// for (ProductEntity product : cart.getProducts()) {
-// totalPrice += product.getProductPrice();
-// }
-// return totalPrice;
-// }
-
-// @Override
-// public void addProductToCart(Long userId, Long productId) {
-// CartEntity cart = cartRepository.findById(userId)
-// .orElseGet(() -> {
-// CustomerEntity user = new CustomerEntity();
-// user.setId(userId);
-// CartEntity newCart = new CartEntity();
-// newCart.setUser(user);
-// return newCart;
-// });
-//
-// // Retrieve the product
-// ProductEntity product = productRepository.findById(productId)
-// .orElseThrow(() -> new RuntimeException("Product not found"));
-//
-// // Add the product to the cart
-// cart.getProducts().add(product);
-//
-// // Update the cart in the database
-// cartRepository.save(cart);
-// }
-//
-// }

@@ -3,6 +3,7 @@ package com.app.services;
 import java.util.List;
 
 import com.app.dtos.OrderDTO;
+import com.app.dtos.OrderRequest;
 
 
 public interface OrderService {
@@ -11,11 +12,12 @@ public interface OrderService {
 
 	OrderDTO getOrderById(Long id);
 
-	OrderDTO saveOrder(OrderDTO order);
+	OrderDTO saveOrder(OrderRequest order);
 
 	//OrderDTO update(Long id, OrderDTO order);
 
-	void deleteOrder(Long id);
+
+	boolean CancelOrder(Long orderId);
 
 
 
