@@ -45,16 +45,25 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public List<CategoryDTO> getCategoriesByCategoryName(String categoryName) {
 
-		List<CategoryEntity> categoryEntities = cdao.findByCategoryName(categoryName);
-		return categoryEntities.stream()
-				.map(entity -> mapper.map(entity, CategoryDTO.class))
-				.collect(Collectors.toList());
+//		Optional<CategoryEntity> categoryEntities = cdao.findByCategoryName(categoryName);
+//		return categoryEntities.stream()
+//				.map(entity -> mapper.map(entity, CategoryDTO.class))
+//				.collect(Collectors.toList());
+		return null;
 	}
 
 	@Override
 	public CategoryDTO addCategory(CategoryDTO category) {
+		 Optional<CategoryEntity> existingCategory = cdao.findByCategoryName(category.getCategoryName());
+	        
+	        if (existingCategory.isPresent()) {
+	            // Handle the case where the category already exists. Could throw an exception or return null.
+	            throw new IllegalStateException("Category already exists");
+	            // Or return null; depending on your error handling strategy
+	        } else {
 		CategoryEntity categoryentity = cdao.save(mapper.map(category, CategoryEntity.class));
 		return mapper.map(categoryentity, CategoryDTO.class);
+	}
 	}
 
 	@Override

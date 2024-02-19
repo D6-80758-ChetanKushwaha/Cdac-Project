@@ -54,14 +54,14 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ProductDTO saveProduct(ProductDTO product) {
+	public ProductDTO save(ProductDTO product) {
 		
 		ProductEntity prod =  mapper.map(product, ProductEntity.class);
 		
 		Optional<CategoryEntity> category = categoryRepository.findById(product.getCategoryId());
 		// getting category by ID
 		if(category.isPresent()) { // checking if present
-//			prod.setCategoryId(category.get());
+		//	prod.setCategoryId(category.get());
 			pdao.save(prod);
 			return mapper.map(product, ProductDTO.class);
 		}

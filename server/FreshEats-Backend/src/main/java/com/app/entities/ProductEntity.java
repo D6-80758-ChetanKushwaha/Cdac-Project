@@ -27,6 +27,8 @@ public class ProductEntity extends BaseEntity {
      * one-to-many relationship where one seller can have multiple products but
      * each product belongs to only one seller, then a unidirectional relationship
      * from Product to Seller would be sufficient .
+     * 
+     * 
      * This means that each Product entity would have a reference to its associated
      * Seller,
      * but the Seller entity would not have a direct reference back to its
@@ -71,5 +73,7 @@ public class ProductEntity extends BaseEntity {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+
 
 }

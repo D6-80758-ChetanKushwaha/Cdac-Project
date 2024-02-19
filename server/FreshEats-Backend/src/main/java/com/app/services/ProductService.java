@@ -8,8 +8,6 @@ public interface ProductService {
 
 	List<ProductDTO> getAllProducts();
 
-	ProductDTO saveProduct(ProductDTO product);
-
 	ProductDTO updateProduct(Long id, ProductDTO product);
 
 	ProductDTO getProductById(Long id);
@@ -17,6 +15,8 @@ public interface ProductService {
 	void deleteProduct(Long productId);
 
 	List<ProductDTO> searchByKeyword(String keyword);
+
+	ProductDTO save(ProductDTO productdto);
 
 	//List<ProductDTO> getProductsByPriceRange(double minPrice, double maxPrice);
 

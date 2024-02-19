@@ -24,7 +24,7 @@ public class CategoryDTO {
 
 	//private Long productId;
 	
-	@NotBlank(message = "Category name should not be null")
+	//@NotBlank(message = "Category name should not be null")
 	@Size(max = 25)
 	private String categoryName;
 

@@ -42,7 +42,7 @@ public class OrderController {
 	}
 	
 	@PostMapping
-	public  ResponseEntity<OrderDTO>AddOrder(@RequestBody OrderDTO order)
+	public  ResponseEntity<OrderDTO> AddOrder(@RequestBody OrderDTO order)
 	{
 		OrderDTO savedProduct = manager.saveOrder(order);
 	        return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);
