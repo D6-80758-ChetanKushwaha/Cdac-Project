@@ -26,8 +26,8 @@ public class ProductDTO {
 	@NotNull(message = "Product category should not be null")
 	private Long categoryId;
 
-	@NotNull
-	private Long sellerId;
+//	@NotNull
+//	private Long sellerId;
 
 	@NotBlank(message = "Product name should not be null")
 	@Size(max = 25)

@@ -59,25 +59,39 @@ function Catelog() {
       },
   ])
 
-  const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJja3VzaHdhaGE1MzZAZ21haWwuY29tIiwiaWF0IjoxNzA4MjU0NTQ1LCJleHAiOjE3MDgzNDA5NDUsImF1dGhvcml0aWVzIjoiU0VMTEVSIn0.oGw_scLgG_IhVncdN00v_OLjC_eRYQjzMJzAwOuDGwIF-c0XuYz3957LAKtejUAjxJF0vSRZEfylSZsVTKe8wg"
+  // const token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJja3VzaHdhaGE1MzZAZ21haWwuY29tIiwiaWF0IjoxNzA4MjU0NTQ1LCJleHAiOjE3MDgzNDA5NDUsImF1dGhvcml0aWVzIjoiU0VMTEVSIn0.oGw_scLgG_IhVncdN00v_OLjC_eRYQjzMJzAwOuDGwIF-c0XuYz3957LAKtejUAjxJF0vSRZEfylSZsVTKe8wg"
 
-  const axiosInstance = Axios.create({
-    headers: {
-      // 'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json', // You can adjust the content type based on your API requirements
-    },
-  });
+  // const axiosInstance = Axios.create({
+  //   headers: {
+  //     'Authorization': `Bearer ${token}`,
+  //     'Content-Type': 'application/json', // You can adjust the content type based on your API requirements
+  //   },
+  // });
 
-    useEffect(()=>{
-      axiosInstance.get("http://localhost:8080/seller/products/1").then((res)=>{
-          console.log(res.data)
-          if(res!=null){
-              setData(res.data)
-          }
-        })
-    },[])
+    // useEffect(()=>{
+    //       fetch('http://localhost:8080/seller/products/catelog')
+    //       .then((res) => {
+    //         return res.json();
+    //       })
+    //       .then((data) => {
+    //         // console.log(type(data));
+    //         console.log(data)
+    //         setData(data);
+    //       });
+    // },[])
     
-  
+
+    useEffect(() => {
+      Axios.get('http://localhost:8080/seller/products/catelog')
+        .then((response) => {
+          setData(response.data);
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+        });
+    }, []);
+    
+
     const [cart, setCart] = useState(()=>{
 
       const storedCart = localStorage.getItem('myCartProds');
@@ -120,17 +134,17 @@ function Catelog() {
                           data.map((obj,index)=>(
                             <article class="relative flex flex-col overflow-hidden rounded-lg border">
                               <div class="aspect-square overflow-hidden">
-                                <img class="h-full w-full object-cover transition-all duration-300 group-hover:scale-125" src={obj["image-url"]} alt="" />
+                                <img class="h-full w-full object-cover transition-all duration-300 group-hover:scale-125" src={obj.imageUrl} alt="" />
                               </div>
                               <div class="absolute top-0 m-2 rounded-full bg-white">
                                 <p class="rounded-full bg-emerald-500 p-1 text-[8px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">Sale</p>
                               </div>
                               <div class="my-4 mx-auto flex w-10/12 flex-col items-start justify-between">
                                 <div class="mb-2 flex">
-                                  <p class="mr-3 text-sm font-semibold">&#8377; {obj.price}</p>
+                                  <p class="mr-3 text-sm font-semibold">&#8377; {obj.productPrice}</p>
                                   <del class="text-xs text-gray-400"> &#8377; {index} </del> 
                                 </div>
-                                <h3 class="mb-2 text-sm text-gray-400">{obj.title}</h3>
+                                <h3 class="mb-2 text-sm text-gray-400">{obj.name}</h3>
                               </div>
                               <button onClick={()=> addProdToCart(obj)} class="group mx-auto mb-2 flex h-10 w-10/12 items-stretch overflow-hidden rounded-md text-gray-600">
                                 

@@ -1,5 +1,7 @@
 package com.app.services;
 
+import com.app.dtos.CatelogProd;
+
 import java.util.List;
 
 import com.app.dtos.ProductDTO;
@@ -7,6 +9,8 @@ import com.app.dtos.ProductDTO;
 public interface ProductService {
 
 	List<ProductDTO> getAllProducts();
+
+	List<CatelogProd> getAllCatelogProds();
 
 	ProductDTO saveProduct(ProductDTO product);
 
@@ -18,8 +22,8 @@ public interface ProductService {
 
 	List<ProductDTO> searchByKeyword(String keyword);
 
-	//List<ProductDTO> getProductsByPriceRange(double minPrice, double maxPrice);
+	// List<ProductDTO> getProductsByPriceRange(double minPrice, double maxPrice);
 
-//	List<ProductDTO> getProductsWithValidDiscount();
+	// List<ProductDTO> getProductsWithValidDiscount();
 
 }

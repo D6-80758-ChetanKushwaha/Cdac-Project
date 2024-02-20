@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom'
 import ToastCom from './Components/User_Components/Toast'
 import Seller from './Seller'
 import NotFound from './Components/NotFound'
-
+import ProductDetails from './Components/User_Components/ProductDetails'
 
 function App() {
   
@@ -25,12 +25,13 @@ function App() {
             {/* User Routes */}
             {/* <Route path="/user"> */}
 
-            <Route path="" element={<Dashboard/>}/>
+            <Route index element={<Dashboard/>}/>
             <Route path="/home" element={<Dashboard/>}/>
             <Route path='/login' element={<Login/>} />
             <Route path='/Cart' element={<Cart/>}/>
             <Route path='/SignUp' element={<SignUp/>} />
             <Route path='/About' element={<About/>} />
+            <Route path='/ProductDetails' element={<ProductDetails/>} />
             <Route path='*' element={<NotFound/>} />
 
             {/* </Route> */}

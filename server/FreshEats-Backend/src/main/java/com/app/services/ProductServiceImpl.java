@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dtos.ApiResponse;
+import com.app.dtos.CatelogProd;
 import com.app.dtos.ProductDTO;
 import com.app.entities.ProductEntity;
 import com.app.exceptions.ProductException;
@@ -28,7 +29,8 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<ProductDTO> getAllProducts() {
-		List<ProductDTO> list = pdao.findAll().stream().map(m -> mapper.map(m, ProductDTO.class))
+		List<ProductDTO> list = pdao.findAll().stream()
+				.map(m -> mapper.map(m, ProductDTO.class))
 				.collect(Collectors.toList());
 
 		return list;
@@ -81,6 +83,14 @@ public class ProductServiceImpl implements ProductService {
 		return prod.stream()
 				.map(entity -> mapper.map(entity, ProductDTO.class))
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<CatelogProd> getAllCatelogProds() {
+		List<CatelogProd> list = pdao.findAll().stream()
+				.map(m -> mapper.map(m, CatelogProd.class))
+				.collect(Collectors.toList());
+		return list;
 	}
 
 	// @Override

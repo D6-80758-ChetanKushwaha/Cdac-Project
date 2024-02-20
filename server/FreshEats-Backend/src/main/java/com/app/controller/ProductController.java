@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.app.dtos.*;
 import com.app.dtos.ProductDTO;
 import com.app.services.ProductService;
 
@@ -40,6 +40,13 @@ public class ProductController {
 	public ResponseEntity<List<ProductDTO>> getAllProducts() {
 		System.out.println("get request got");
 		List<ProductDTO> products = productService.getAllProducts();
+		return ResponseEntity.ok(products);
+	}
+
+	@GetMapping("/catelog")
+	public ResponseEntity<List<CatelogProd>> getAllCateProducts() {
+		System.out.println("get request got");
+		List<CatelogProd> products = productService.getAllCatelogProds();
 		return ResponseEntity.ok(products);
 	}
 

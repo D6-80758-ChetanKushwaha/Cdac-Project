@@ -104,20 +104,20 @@ const Cart = () => {
                                         <tr>
                                             <td className="py-4">
                                                 <div className="flex items-center">
-                                                    <img className="h-16 w-16 mr-4" src={obj["image-url"]} alt="Product image" />
-                                                    <span className="font-semibold">{obj.title}</span>
+                                                    <img className="h-16 w-16 mr-4" src={obj.imageUrl} alt="Product image" />
+                                                    <span className="font-semibold">{obj.name}</span>
                                                 </div>
                                             </td>
-                                            <td className="py-4">&#8377; {obj.price.toFixed(2)}</td>
+                                            <td className="py-4">&#8377; {obj.productPrice}</td>
                                             <td className="py-4">
                                                 <div className="flex items-center">
                                                     <button className="border rounded-md py-2 px-4 mr-2" onClick={()=>handleDecrease(obj.key)}>-</button>
-                                                    <span className="text-center w-8">{obj.quantity}</span>
+                                                    <span className="text-center w-8">{obj.stockQuantity}</span>
                                                     <button className="border rounded-md py-2 px-4 ml-2" onClick={()=>handleIncrease(obj.key)}>+</button>
                                                 </div>
                                             </td>
 
-                                            <td className="py-4">&#8377; {(obj.price * obj.quantity).toFixed(2)}</td>
+                                            <td className="py-4">&#8377; {(obj.productPrice * obj.stockQuantity).toFixed(2)}</td>
                                             <td >
 
                                                 <svg style={{"cursor":"pointer"}}  onClick={()=> deleteCart(obj.key)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
