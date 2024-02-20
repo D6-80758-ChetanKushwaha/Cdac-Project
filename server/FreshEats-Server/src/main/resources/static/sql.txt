@@ -1,0 +1,6 @@
+
+insert into orders (id, created_at, payment_method, shipping_address, status, total_price, user_id)
+values (1, '2024-02-11T23:15:34','COD','Santoshi Nagar','COMPLETED',1000,1);
+
+insert into order_details (id, price_at_purchase, quantity, orderid)
+values (1,100, 10, 1);
