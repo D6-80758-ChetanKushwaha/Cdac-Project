@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.app.dtos.*;
-import com.app.dtos.ProductDTO;
+import com.app.exceptions.ProductControllerException;
 import com.app.services.ProductService;
 
 @RestController
@@ -52,9 +52,21 @@ public class ProductController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
-		// Product product = productService.getProductById(id);
-		return new ResponseEntity<ProductDTO>(productService.getProductById(id), HttpStatus.OK);
+		ProductDTO product = productService.getProductById(id);
+
+		if (product != null) {
+			return ResponseEntity.ok(product);
+		} else {
+			throw new ProductControllerException("Product not found for ID: " + id);
+		}
 	}
+
+	// @GetMapping("/{id}")
+	// public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
+	// // Product product = productService.getProductById(id);
+	// return new ResponseEntity<ProductDTO>(productService.getProductById(id),
+	// HttpStatus.OK);
+	// }
 
 	@PostMapping
 	public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO productdto) {
